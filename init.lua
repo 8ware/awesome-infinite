@@ -1,4 +1,6 @@
 
+local awful = require("awful")
+
 local capi = {
     screen = screen,
 }
@@ -13,6 +15,22 @@ local shelf = capi.screen.fake_add(
 
 function versatile.screen(index)
     return capi.screen[index] or shelf
+end
+
+local function move(taglist)
+    return {
+        to = function (screen)
+            for _, tag in ipairs (taglist) do
+                tag.screen = screen
+            end
+        end,
+    }
+end
+
+function versatile.activate(taglist)
+    local screen = awful.screen.focused()
+    move(screen.tags).to(shelf)
+    move(taglist).to(screen)
 end
 
 return versatile
