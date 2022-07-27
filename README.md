@@ -11,3 +11,19 @@ moving the desired one to the currently focused screen. The previously active
 tasklist is shelved to a hidden screen so that the usual keybindings can be
 used to view tags 1–9.
 
+
+Setup :wrench:
+-----
+
+```
+cd .config/awesome/
+git clone https://github.com/8ware/awesome-versatile.git versatile
+patch rc.lua versatile/rc.lua.patch
+```
+
+
+Credits :coin:
+-------
+
+This module was inspired by Drauthius' [sharedtags](https://github.com/Drauthius/awesome-sharedtags).
+
