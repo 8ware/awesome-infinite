@@ -53,6 +53,13 @@ function versatile.move(client)
             local tag = from(taglist).get_selected_or_first()
             client:move_to_tag(tag)
         end,
+
+        to_next_screen = function ()
+            client:move_to_screen()
+            if client.screen == shelf then
+                client:move_to_screen()
+            end
+        end,
     }
 end
 
