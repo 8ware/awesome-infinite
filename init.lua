@@ -33,5 +33,28 @@ function versatile.activate(taglist)
     move(taglist).to(screen)
 end
 
+local function from(taglist)
+    return {
+        get_selected_or_first = function ()
+            for _, tag in ipairs (taglist) do
+                if tag.selected then
+                    return tag
+                end
+            end
+
+            return taglist[0]
+        end,
+    }
+end
+
+function versatile.move(client)
+    return {
+        to = function (taglist)
+            local tag = from(taglist).get_selected_or_first()
+            client:move_to_tag(tag)
+        end,
+    }
+end
+
 return versatile
 
