@@ -6,14 +6,17 @@ local capi = {
 }
 
 
-local infinite = {}
+local infinite = {
+    screen = {},
+    tags = {},
+}
 
 local shelf = capi.screen.fake_add(
     -capi.screen[1].geometry.width, -capi.screen[1].geometry.height,
      capi.screen[1].geometry.width,  capi.screen[1].geometry.height
 )
 
-function infinite.screen(index)
+function infinite.screen.get(index)
     return capi.screen[index] or shelf
 end
 
@@ -27,7 +30,7 @@ local function move(taglist)
     }
 end
 
-function infinite.activate(taglist)
+function infinite.screen.activate(taglist)
     local screen = awful.screen.focused()
     move(screen.tags).to(shelf)
     move(taglist).to(screen)
@@ -47,14 +50,20 @@ local function from(taglist)
     }
 end
 
-function infinite.move(client)
+-- infinite.tags.move(client).to(taglist)
+function infinite.tags.move(client)
     return {
         to = function (taglist)
             local tag = from(taglist).get_selected_or_first()
             client:move_to_tag(tag)
         end,
+    }
+end
 
-        to_next_screen = function ()
+-- infinite.screen.move(client).around()
+function infinite.screen.move(client)
+    return {
+        around = function ()
             client:move_to_screen()
             if client.screen == shelf then
                 client:move_to_screen()
@@ -62,6 +71,10 @@ function infinite.move(client)
         end,
     }
 end
+
+setmetatable (infinite.screen, {
+    __call = function (_, index) return infinite.screen.get(index) end,
+})
 
 return infinite
 
