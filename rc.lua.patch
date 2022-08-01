@@ -1,12 +1,12 @@
 24a25,26
-> local versatile = require("versatile")
+> local infinite = require("infinite")
 > 
 86a89,96
 > -- {{{ Tags
 > local taglist = {
->     awful.tag({ "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι" }, versatile.screen(1), awful.layout.layouts[1]),
->     awful.tag({ "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ" }, versatile.screen(2), awful.layout.layouts[1]),
->     awful.tag({ "τ", "υ", "φ", "χ", "ψ", "ω" },                versatile.screen(3), awful.layout.layouts[1]),
+>     awful.tag({ "α", "β", "γ", "δ", "ε", "ζ", "η", "θ", "ι" }, infinite.screen(1), awful.layout.layouts[1]),
+>     awful.tag({ "κ", "λ", "μ", "ν", "ξ", "ο", "π", "ρ", "σ" }, infinite.screen(2), awful.layout.layouts[1]),
+>     awful.tag({ "τ", "υ", "φ", "χ", "ψ", "ω" },                infinite.screen(3), awful.layout.layouts[1]),
 > }
 > -- }}}
 > 
@@ -16,23 +16,23 @@
 < 
 249a257,264
 >     -- Taglist selection
->     awful.key({ modkey }, "F1", function () versatile.activate(taglist[1]) end,
+>     awful.key({ modkey }, "F1", function () infinite.activate(taglist[1]) end,
 >               {description = "activate taglist #1", group = "tag"}),
->     awful.key({ modkey }, "F2", function () versatile.activate(taglist[2]) end,
+>     awful.key({ modkey }, "F2", function () infinite.activate(taglist[2]) end,
 >               {description = "activate taglist #2", group = "tag"}),
->     awful.key({ modkey }, "F3", function () versatile.activate(taglist[3]) end,
+>     awful.key({ modkey }, "F3", function () infinite.activate(taglist[3]) end,
 >               {description = "activate taglist #3", group = "tag"}),
 > 
 350a366,373
 > 	-- Taglist selection
->     awful.key({ modkey, "Shift" }, "F1", function (c) versatile.move(c).to(taglist[1]) end,
+>     awful.key({ modkey, "Shift" }, "F1", function (c) infinite.move(c).to(taglist[1]) end,
 >               {description = "move focused client to taglist #1", group = "tag"}),
->     awful.key({ modkey, "Shift" }, "F2", function (c) versatile.move(c).to(taglist[2]) end,
+>     awful.key({ modkey, "Shift" }, "F2", function (c) infinite.move(c).to(taglist[2]) end,
 >               {description = "move focused client to taglist #2", group = "tag"}),
->     awful.key({ modkey, "Shift" }, "F3", function (c) versatile.move(c).to(taglist[3]) end,
+>     awful.key({ modkey, "Shift" }, "F3", function (c) infinite.move(c).to(taglist[3]) end,
 >               {description = "move focused client to taglist #3", group = "tag"}),
 > 
 363c386
 <     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
 ---
->     awful.key({ modkey,           }, "o",      function (c) versatile.move(c).to_next_screen() end,
+>     awful.key({ modkey,           }, "o",      function (c) infinite.move(c).to_next_screen() end,

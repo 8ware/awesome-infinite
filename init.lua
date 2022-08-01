@@ -6,14 +6,14 @@ local capi = {
 }
 
 
-local versatile = {}
+local infinite = {}
 
 local shelf = capi.screen.fake_add(
     -capi.screen[1].geometry.width, -capi.screen[1].geometry.height,
      capi.screen[1].geometry.width,  capi.screen[1].geometry.height
 )
 
-function versatile.screen(index)
+function infinite.screen(index)
     return capi.screen[index] or shelf
 end
 
@@ -27,7 +27,7 @@ local function move(taglist)
     }
 end
 
-function versatile.activate(taglist)
+function infinite.activate(taglist)
     local screen = awful.screen.focused()
     move(screen.tags).to(shelf)
     move(taglist).to(screen)
@@ -47,7 +47,7 @@ local function from(taglist)
     }
 end
 
-function versatile.move(client)
+function infinite.move(client)
     return {
         to = function (taglist)
             local tag = from(taglist).get_selected_or_first()
@@ -63,5 +63,5 @@ function versatile.move(client)
     }
 end
 
-return versatile
+return infinite
 
