@@ -8,7 +8,7 @@ beamer while mirroring the laptop screen) all clients are moved to tag 1.
 
 Infinite allows to access statically defined taglists from all screens by
 moving the desired one to the currently focused screen. The previously active
-tasklist is shelved to a hidden screen so that the usual keybindings can be
+taglist is shelved to a hidden screen so that the usual keybindings can be
 used to view tags 1–9.
 
 
